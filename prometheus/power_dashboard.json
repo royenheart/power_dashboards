@@ -121,7 +121,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 2,
         "x": 0,
         "y": 1
@@ -200,7 +200,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 2,
         "x": 2,
         "y": 1
@@ -271,7 +271,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 2,
         "x": 4,
         "y": 1
@@ -347,7 +347,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 6,
         "y": 1
@@ -416,7 +416,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 9,
         "y": 1
@@ -454,408 +454,6 @@
       ],
       "title": "Total Avg Hwmon Watt",
       "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 12,
-        "x": 12,
-        "y": 1
-      },
-      "id": 65,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_load1",
-          "format": "time_series",
-          "intervalFactor": 4,
-          "legendFormat": "Node {{ job }} Load 1m",
-          "range": true,
-          "refId": "A",
-          "step": 240
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_load5",
-          "format": "time_series",
-          "intervalFactor": 4,
-          "legendFormat": "Node {{ job }} Load 5m",
-          "range": true,
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_load15",
-          "format": "time_series",
-          "intervalFactor": 4,
-          "legendFormat": "Node {{ job }} Load 15m",
-          "range": true,
-          "refId": "C",
-          "step": 240
-        }
-      ],
-      "title": "Cluster Loads",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "The time-series for Power Usage of NVIDIA GPU",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "mwatt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 5
-      },
-      "id": 56,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "min",
-            "max",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "node_nvgpu_power_usage",
-          "format": "time_series",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{ job }} GPU {{ index }}",
-          "range": true,
-          "refId": "PowerUsage",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "node_nvgpu_power_enforce_limit",
-          "format": "time_series",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{ job }} GPU Enforced Limit: {{index}}",
-          "range": true,
-          "refId": "Enforced Limitation",
-          "useBackend": false
-        }
-      ],
-      "title": "Total NVIDIA GPU Power",
-      "transformations": [],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "%util",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 40,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "io time"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#890F02",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byType",
-              "options": "time"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 13
-      },
-      "id": 66,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_disk_io_time_seconds_total [$__rate_interval])",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Node {{ job }} {{device}}",
-          "range": true,
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "title": "Cluster I/O Utilization",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -925,7 +523,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 13
+        "y": 1
       },
       "id": 68,
       "links": [],
@@ -933,8 +531,8 @@
         "legend": {
           "calcs": [
             "lastNotNull",
-            "min",
             "max",
+            "min",
             "mean"
           ],
           "displayMode": "table",
@@ -1031,12 +629,744 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "The time-series for Power Usage of NVIDIA GPU",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "mwatt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 4
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_nvgpu_power_usage",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ job }} GPU {{ index }}",
+          "range": true,
+          "refId": "PowerUsage",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "node_nvgpu_power_enforce_limit",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ job }} GPU Enforced Limit: {{index}}",
+          "range": true,
+          "refId": "Enforced Limitation",
+          "useBackend": false
+        }
+      ],
+      "title": "Total NVIDIA GPU Power",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 4
+      },
+      "id": 70,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "nvgpu_temp",
+          "instant": false,
+          "legendFormat": "{{job}} GPU {{index}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cluster GPU Temp",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 11
+      },
+      "id": 65,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_load1",
+          "format": "time_series",
+          "intervalFactor": 4,
+          "legendFormat": "Node {{ job }} Load 1m",
+          "range": true,
+          "refId": "A",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_load5",
+          "format": "time_series",
+          "intervalFactor": 4,
+          "legendFormat": "Node {{ job }} Load 5m",
+          "range": true,
+          "refId": "B",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_load15",
+          "format": "time_series",
+          "intervalFactor": 4,
+          "legendFormat": "Node {{ job }} Load 15m",
+          "range": true,
+          "refId": "C",
+          "step": 240
+        }
+      ],
+      "title": "Cluster Loads",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 11
+      },
+      "id": 71,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes - node_memory_Slab_bytes - node_memory_PageTables_bytes - node_memory_SwapCached_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Apps - Memory used by user-space applications",
+          "range": true,
+          "refId": "A",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_PageTables_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} PageTables - Memory used to map between virtual and physical memory addresses",
+          "range": true,
+          "refId": "B",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_SwapCached_bytes",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} SwapCache - Memory that keeps track of pages that have been fetched from swap but not yet been modified",
+          "range": true,
+          "refId": "C",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_Slab_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Slab - Memory used by the kernel to cache data structures for its own use (caches like inode, dentry, etc)",
+          "range": true,
+          "refId": "D",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_Cached_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Cache - Parked file data (file content) cache",
+          "range": true,
+          "refId": "E",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_Buffers_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Buffers - Block device (e.g. harddisk) cache",
+          "range": true,
+          "refId": "F",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_MemFree_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Unused - Free memory unassigned",
+          "range": true,
+          "refId": "G",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "(node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Swap - Swap space used",
+          "range": true,
+          "refId": "H",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_HardwareCorrupted_bytes",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{job}} Hardware Corrupted - Amount of RAM that the kernel identified as corrupted / not working",
+          "range": true,
+          "refId": "I",
+          "step": 240
+        }
+      ],
+      "title": "Cluster Memory Stack",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "%util",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 40,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "io time"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#890F02",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "time"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "hidden"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 11
+      },
+      "id": 66,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "irate(node_disk_io_time_seconds_total [$__rate_interval])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Node {{ job }} {{device}}",
+          "range": true,
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "title": "Cluster I/O Utilization",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 18
       },
       "id": 40,
       "panels": [],
@@ -1086,7 +1416,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 24
+        "y": 19
       },
       "id": 43,
       "links": [],
@@ -1174,7 +1504,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 24
+        "y": 19
       },
       "id": 34,
       "links": [],
@@ -1264,7 +1594,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 24
+        "y": 19
       },
       "id": 39,
       "links": [],
@@ -1343,7 +1673,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 24
+        "y": 19
       },
       "hideTimeOverride": false,
       "id": 37,
@@ -1450,7 +1780,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 24
+        "y": 19
       },
       "id": 38,
       "links": [],
@@ -1538,7 +1868,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 24
+        "y": 19
       },
       "id": 35,
       "links": [],
@@ -1628,7 +1958,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 24
+        "y": 19
       },
       "id": 41,
       "links": [],
@@ -1718,7 +2048,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 24
+        "y": 19
       },
       "id": 36,
       "links": [],
@@ -1790,7 +2120,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 28
+        "y": 23
       },
       "id": 62,
       "options": {
@@ -1859,7 +2189,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 28
+        "y": 23
       },
       "id": 63,
       "options": {
@@ -1901,7 +2231,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 27
       },
       "id": 3,
       "panels": [],
@@ -1974,17 +2304,17 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 28
       },
       "id": 54,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -2405,17 +2735,17 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 28
       },
       "id": 47,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -2737,17 +3067,17 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 45
+        "y": 40
       },
       "id": 46,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3060,17 +3390,17 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 45
+        "y": 40
       },
       "id": 49,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3507,17 +3837,17 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 57
+        "y": 52
       },
       "id": 48,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3622,17 +3952,17 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 57
+        "y": 52
       },
       "id": 51,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3768,17 +4098,17 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 69
+        "y": 64
       },
       "id": 50,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -3887,17 +4217,17 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 69
+        "y": 64
       },
       "id": 53,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4006,17 +4336,17 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 76
       },
       "id": 52,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4052,7 +4382,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 86
       },
       "id": 45,
       "panels": [],
@@ -4065,7 +4395,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 92
+        "y": 87
       },
       "id": 24,
       "panels": [],
@@ -4137,16 +4467,16 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 93
+        "y": 88
       },
       "id": 23,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4243,16 +4573,16 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 93
+        "y": 88
       },
       "id": 22,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4349,16 +4679,16 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 101
+        "y": 96
       },
       "id": 25,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4495,17 +4825,17 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 101
+        "y": 96
       },
       "id": 55,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -4601,502 +4931,504 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 106
       },
       "id": 27,
-      "panels": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Power Supply Charge Ampere",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "amp"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 89
+          },
+          "id": 26,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "node_power_supply_charge_ampere{job=\"$job\", instance=\"$node\"}",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "Supply: {{power_supply}}",
+              "range": true,
+              "refId": "power supply charge ampere",
+              "useBackend": false
+            }
+          ],
+          "title": "Power Supply Charge Ampere",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Power Supply Voltage in Volt",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "volt"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 89
+          },
+          "id": 31,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "node_power_supply_voltage_volt{job=\"$job\", instance=\"$node\"}",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "Supply: {{power_supply}}",
+              "range": true,
+              "refId": "power supply charge ampere",
+              "useBackend": false
+            }
+          ],
+          "title": "Power Supply Voltage",
+          "type": "timeseries"
+        }
+      ],
       "title": "Power Supply Class",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Power Supply Charge Ampere",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "amp"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 112
-      },
-      "id": 26,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "node_power_supply_charge_ampere{job=\"$job\", instance=\"$node\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Supply: {{power_supply}}",
-          "range": true,
-          "refId": "power supply charge ampere",
-          "useBackend": false
-        }
-      ],
-      "title": "Power Supply Charge Ampere",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Power Supply Voltage in Volt",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 112
-      },
-      "id": 31,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "node_power_supply_voltage_volt{job=\"$job\", instance=\"$node\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Supply: {{power_supply}}",
-          "range": true,
-          "refId": "power supply charge ampere",
-          "useBackend": false
-        }
-      ],
-      "title": "Power Supply Voltage",
-      "type": "timeseries"
-    },
-    {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 120
+        "y": 107
       },
       "id": 30,
-      "panels": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Total Node Rapl Core in Joules per second",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "J/s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "index: 0 / path: \"/sys/class/powercap/intel-rapl:0:0\""
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 90
+          },
+          "id": 29,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max",
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "rate(node_rapl_core_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "index: {{index}} / path: \"{{path}}\"",
+              "range": true,
+              "refId": "node rapl core joules total",
+              "useBackend": false
+            }
+          ],
+          "title": "Total Node Rapl Core (J/s)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Total Node Rapl Package in Joules per second",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "J/s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "index: 0 / Supply: \"/sys/class/powercap/intel-rapl:0\""
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 90
+          },
+          "id": 32,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max",
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "rate(node_rapl_package_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "index: {{index}} / Supply: \"{{path}}\"",
+              "range": true,
+              "refId": "node rapl core joules total",
+              "useBackend": false
+            }
+          ],
+          "title": "Total Node Rapl Package (J/s)",
+          "type": "timeseries"
+        }
+      ],
       "title": "RAPL",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Total Node Rapl Core in Joules per second",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "J/s"
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "index: 0 / path: \"/sys/class/powercap/intel-rapl:0:0\""
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 121
-      },
-      "id": 29,
-      "options": {
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "mean",
-            "lastNotNull"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(node_rapl_core_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "index: {{index}} / path: \"{{path}}\"",
-          "range": true,
-          "refId": "node rapl core joules total",
-          "useBackend": false
-        }
-      ],
-      "title": "Total Node Rapl Core (J/s)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Total Node Rapl Package in Joules per second",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "J/s"
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "index: 0 / Supply: \"/sys/class/powercap/intel-rapl:0\""
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 121
-      },
-      "id": 32,
-      "options": {
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "mean",
-            "lastNotNull"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(node_rapl_package_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "index: {{index}} / Supply: \"{{path}}\"",
-          "range": true,
-          "refId": "node rapl core joules total",
-          "useBackend": false
-        }
-      ],
-      "title": "Total Node Rapl Package (J/s)",
-      "type": "timeseries"
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 129
+        "y": 108
       },
       "id": 21,
       "panels": [],
@@ -5243,17 +5575,17 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 130
+        "y": 109
       },
       "id": 33,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -5272,7 +5604,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "node_cpu_scaling_frequency_hertz{instance=\"$node\",job=\"$job\"}",
+          "expr": "cpu_freqs{job=\"$job\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -5288,7 +5620,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(node_cpu_scaling_frequency_max_hertz{instance=\"$node\",job=\"$job\"})",
+          "expr": "avg(cpu_max_freqs{job=\"$job\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -5304,7 +5636,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(node_cpu_scaling_frequency_min_hertz{instance=\"$node\",job=\"$job\"})",
+          "expr": "avg(cpu_min_freqs{job=\"$job\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -5319,12 +5651,114 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "cpu utils",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 109
+      },
+      "id": 69,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "cpu_utils{job=\"$job\"}",
+          "instant": false,
+          "legendFormat": "CPU {{cpu}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Utils",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 140
+        "y": 119
       },
       "id": 2,
       "panels": [],
@@ -5365,7 +5799,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 141
+        "y": 120
       },
       "id": 4,
       "options": {
@@ -5393,7 +5827,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_sysinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_sysinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5442,7 +5876,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 141
+        "y": 120
       },
       "id": 9,
       "options": {
@@ -5470,7 +5904,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_sysinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_sysinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5519,7 +5953,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 141
+        "y": 120
       },
       "id": 6,
       "options": {
@@ -5547,7 +5981,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_sysinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_sysinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5592,7 +6026,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 141
+        "y": 120
       },
       "id": 5,
       "options": {
@@ -5620,7 +6054,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_gpuinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_gpuinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5665,7 +6099,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 141
+        "y": 120
       },
       "id": 14,
       "options": {
@@ -5693,7 +6127,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_compute_mode{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_compute_mode{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5738,7 +6172,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 141
+        "y": 120
       },
       "id": 15,
       "options": {
@@ -5766,7 +6200,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_persis_mode{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_persis_mode{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5816,7 +6250,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 141
+        "y": 120
       },
       "id": 17,
       "options": {
@@ -5844,7 +6278,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_min_fan_speed{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_min_fan_speed{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -5863,7 +6297,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_max_fan_speed{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_max_fan_speed{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -5944,16 +6378,16 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 145
+        "y": 124
       },
       "id": 1,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -5974,7 +6408,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_temp{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_temp{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6019,7 +6453,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 145
+        "y": 124
       },
       "id": 10,
       "options": {
@@ -6048,7 +6482,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_gpuinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_gpuinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6093,7 +6527,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 145
+        "y": 124
       },
       "id": 11,
       "options": {
@@ -6121,7 +6555,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_gpuinfo{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_gpuinfo{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6201,16 +6635,16 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 153
+        "y": 132
       },
       "id": 13,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -6231,7 +6665,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_clk{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_clk{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6282,7 +6716,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 153
+        "y": 132
       },
       "id": 16,
       "options": {
@@ -6309,7 +6743,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_util{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_util{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6389,16 +6823,16 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 161
+        "y": 140
       },
       "id": 19,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -6419,7 +6853,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_power_usage{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_power_usage{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6438,7 +6872,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_power_enforce_limit{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_enforce_limit{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -6519,16 +6953,16 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 161
+        "y": 140
       },
       "id": 20,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -6549,7 +6983,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_mem_total{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_mem_total{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6568,7 +7002,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_mem_used{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_mem_used{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -6588,7 +7022,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_mem_free{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_mem_free{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "hide": false,
@@ -6669,16 +7103,16 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 169
+        "y": 148
       },
       "id": 12,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -6701,7 +7135,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_appclk{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_appclk{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6781,16 +7215,16 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 169
+        "y": 148
       },
       "id": 18,
       "options": {
         "legend": {
           "calcs": [
-            "min",
+            "lastNotNull",
             "max",
-            "mean",
-            "lastNotNull"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -6811,7 +7245,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "node_nvgpu_fan_speed{job=\"$job\", instance=\"$node\"}",
+          "expr": "nvgpu_fan_speed{job=\"$job\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -6832,7 +7266,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 177
+        "y": 156
       },
       "id": 57,
       "panels": [],
@@ -6905,17 +7339,17 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 178
+        "y": 157
       },
       "id": 58,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -7035,17 +7469,17 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 178
+        "y": 157
       },
       "id": 59,
       "links": [],
       "options": {
         "legend": {
           "calcs": [
-            "mean",
             "lastNotNull",
             "max",
-            "min"
+            "min",
+            "mean"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -7197,6 +7631,6 @@
   "timezone": "",
   "title": "Power Dashboard",
   "uid": "f34247bf-b37b-4e33-918a-7cbf80feae5f",
-  "version": 22,
+  "version": 15,
   "weekStart": ""
 }

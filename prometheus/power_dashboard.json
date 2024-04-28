@@ -24,6 +24,12 @@
       "version": "10.2.2"
     },
     {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
       "type": "datasource",
       "id": "prometheus",
       "name": "Prometheus",
@@ -348,7 +354,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
+        "w": 3,
         "x": 6,
         "y": 1
       },
@@ -391,6 +397,202 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Total Power in BMC",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 1
+      },
+      "id": 86,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"total\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Power in BMC",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Power Comsuption Rate",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 3,
+        "x": 12,
+        "y": 1
+      },
+      "id": 80,
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"cpu\"}) / sum(bmc_power_info{component=\"total\"})",
+          "instant": false,
+          "legendFormat": "CPU Power Rate",
+          "range": true,
+          "refId": "CPU"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(nvgpu_power{mode=\"usage\"}) / 1000 / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "GPU Power Rate",
+          "range": true,
+          "refId": "GPU"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"fan\"}) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Fan Power Rate",
+          "range": true,
+          "refId": "Fan"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"mem\"}) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Mem Power Rate",
+          "range": true,
+          "refId": "Mem"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "(sum(bmc_power_info{component=\"total\"}) - sum(bmc_power_info{component=\"mem\"}) - sum(bmc_power_info{component=\"fan\"}) - (sum(nvgpu_power_usage) / 1000) - sum(bmc_power_info{component=\"cpu\"})) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Others Power Rate",
+          "range": true,
+          "refId": "Others"
+        }
+      ],
+      "title": "Power Comsuption Rate",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Power Comsuption Trend",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -413,11 +615,8 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
-            "pointSize": 4,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -431,7 +630,6 @@
               "mode": "off"
             }
           },
-          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -446,18 +644,17 @@
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "percentunit"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 13,
-        "w": 12,
-        "x": 12,
+        "h": 10,
+        "w": 9,
+        "x": 15,
         "y": 1
       },
-      "id": 68,
-      "links": [],
+      "id": 81,
       "options": {
         "legend": {
           "calcs": [
@@ -475,7 +672,6 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -483,14 +679,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "node_hwmon_temp_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} temp",
+          "expr": "sum(bmc_power_info{component=\"cpu\"}) / sum(bmc_power_info{component=\"total\"})",
+          "instant": false,
+          "legendFormat": "CPU Power Rate",
           "range": true,
-          "refId": "A",
-          "step": 240
+          "refId": "CPU"
         },
         {
           "datasource": {
@@ -498,65 +691,54 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "node_hwmon_temp_crit_alarm_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
-          "format": "time_series",
-          "hide": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical Alarm",
-          "range": true,
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_hwmon_temp_crit_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical",
-          "range": true,
-          "refId": "C",
-          "step": 240
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_hwmon_temp_crit_hyst_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
-          "format": "time_series",
-          "hide": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical Historical",
-          "range": true,
-          "refId": "D",
-          "step": 240
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "node_hwmon_temp_max_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
-          "format": "time_series",
+          "expr": "sum(nvgpu_power{mode=\"usage\"}) / 1000 / sum(bmc_power_info{component=\"total\"})",
           "hide": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Max",
+          "instant": false,
+          "legendFormat": "GPU Power Rate",
           "range": true,
-          "refId": "E",
-          "step": 240
+          "refId": "GPU"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"fan\"}) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Fan Power Rate",
+          "range": true,
+          "refId": "Fan"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(bmc_power_info{component=\"mem\"}) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Mem Power Rate",
+          "range": true,
+          "refId": "Mem"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "(sum(bmc_power_info{component=\"total\"}) - sum(bmc_power_info{component=\"mem\"}) - sum(bmc_power_info{component=\"fan\"}) - sum(nvgpu_power{mode=\"usage\"}) / 1000 - sum(bmc_power_info{component=\"cpu\"})) / sum(bmc_power_info{component=\"total\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Others Power Rate",
+          "range": true,
+          "refId": "Others"
         }
       ],
-      "title": "Cluster hardware temperatures",
+      "title": "Power Comsuption Trend",
       "type": "timeseries"
     },
     {
@@ -618,7 +800,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(ipmi_fan_power)",
+          "expr": "sum(bmc_power_info{component=\"fan\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -687,7 +869,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(ipmi_cpu_power)",
+          "expr": "sum(bmc_power_info{component=\"cpu\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -756,7 +938,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(ipmi_mem_power)",
+          "expr": "sum(bmc_power_info{component=\"mem\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1094,6 +1276,179 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 68,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} temp",
+          "range": true,
+          "refId": "A",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_crit_alarm_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical Alarm",
+          "range": true,
+          "refId": "B",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_crit_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical",
+          "range": true,
+          "refId": "C",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_crit_hyst_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Critical Historical",
+          "range": true,
+          "refId": "D",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_hwmon_temp_max_celsius * on(chip, instance) group_left(chip_name) node_hwmon_chip_names",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ job }} {{ chip_name }} {{ chip }} {{ sensor }} Max",
+          "range": true,
+          "refId": "E",
+          "step": 240
+        }
+      ],
+      "title": "Cluster hardware temperatures",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1158,9 +1513,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_fan_speed",
+          "expr": "bmc_fan_read",
           "instant": false,
-          "legendFormat": "{{job}} FAN{{fan}}_{{pos}}",
+          "legendFormat": "{{job}} {{name}}({{readingunits}})",
           "range": true,
           "refId": "A"
         }
@@ -1261,7 +1616,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "cpu_freqs",
+          "expr": "cpu_freqs{mode=\"current\"}",
           "format": "time_series",
           "intervalFactor": 4,
           "legendFormat": "{{ job }} CPU{{cpu}} freqs",
@@ -1275,11 +1630,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "cpu_max_freqs",
+          "expr": "cpu_freqs{mode=\"max\"}",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 4,
-          "legendFormat": "{{ job }} CPU{{cpu}} Max freqs",
+          "legendFormat": "{{ job }} CPU{{cpu}} MaxF",
           "range": true,
           "refId": "B",
           "step": 240
@@ -1290,11 +1645,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "cpu_min_freqs",
+          "expr": "cpu_freqs{mode=\"min\"}",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 4,
-          "legendFormat": "{{ job }} CPU{{cpu}} Min freqs",
+          "legendFormat": "{{ job }} CPU{{cpu}} MinF",
           "range": true,
           "refId": "C",
           "step": 240
@@ -1366,8 +1721,8 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 12,
-        "y": 14
+        "x": 0,
+        "y": 21
       },
       "id": 79,
       "links": [],
@@ -1530,8 +1885,8 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 18,
-        "y": 14
+        "x": 6,
+        "y": 21
       },
       "id": 66,
       "links": [],
@@ -1580,7 +1935,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 28
       },
       "id": 40,
       "panels": [],
@@ -1630,7 +1985,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 22
+        "y": 29
       },
       "id": 43,
       "links": [],
@@ -1718,7 +2073,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 22
+        "y": 29
       },
       "id": 34,
       "links": [],
@@ -1808,7 +2163,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 22
+        "y": 29
       },
       "id": 39,
       "links": [],
@@ -1887,7 +2242,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 22
+        "y": 29
       },
       "hideTimeOverride": false,
       "id": 37,
@@ -1994,7 +2349,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 22
+        "y": 29
       },
       "id": 38,
       "links": [],
@@ -2082,7 +2437,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 22
+        "y": 29
       },
       "id": 35,
       "links": [],
@@ -2172,7 +2527,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 22
+        "y": 29
       },
       "id": 41,
       "links": [],
@@ -2262,7 +2617,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 22
+        "y": 29
       },
       "id": 36,
       "links": [],
@@ -2334,7 +2689,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 26
+        "y": 33
       },
       "id": 62,
       "options": {
@@ -2403,7 +2758,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 26
+        "y": 33
       },
       "id": 63,
       "options": {
@@ -2445,7 +2800,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 37
       },
       "id": 3,
       "panels": [],
@@ -2518,7 +2873,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 31
+        "y": 38
       },
       "id": 54,
       "links": [],
@@ -2949,7 +3304,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 38
       },
       "id": 47,
       "links": [],
@@ -3281,7 +3636,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 50
       },
       "id": 46,
       "links": [],
@@ -3604,7 +3959,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 50
       },
       "id": 49,
       "links": [],
@@ -4051,7 +4406,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 62
       },
       "id": 48,
       "links": [],
@@ -4166,7 +4521,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 62
       },
       "id": 51,
       "links": [],
@@ -4312,7 +4667,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 74
       },
       "id": 50,
       "links": [],
@@ -4431,7 +4786,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 74
       },
       "id": 53,
       "links": [],
@@ -4550,7 +4905,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 79
+        "y": 86
       },
       "id": 52,
       "links": [],
@@ -4591,16 +4946,16 @@
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 89
+        "y": 96
       },
       "id": 45,
       "panels": [],
-      "title": "IPMI",
+      "title": "BMC",
       "type": "row"
     },
     {
@@ -4608,6 +4963,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Machine Power in BMC",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4667,7 +5023,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 90
+        "y": 97
       },
       "id": 72,
       "options": {
@@ -4694,7 +5050,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_total_power{job=\"$job\"}",
+          "expr": "bmc_power_info{job=\"$job\", component=\"total\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{job}} Total Power",
@@ -4707,7 +5063,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_fan_power{job=\"$job\"}",
+          "expr": "bmc_power_info{job=\"$job\", component=\"fan\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{job}} Fan Power",
@@ -4720,7 +5076,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_cpu_power{job=\"$job\"}",
+          "expr": "bmc_power_info{job=\"$job\", component=\"cpu\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{job}} CPU Power",
@@ -4733,7 +5089,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_mem_power{job=\"$job\"}",
+          "expr": "bmc_power_info{job=\"$job\", component=\"mem\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{job}} Memory Power",
@@ -4741,7 +5097,7 @@
           "refId": "Mem Power"
         }
       ],
-      "title": "Machine Power in IPMI",
+      "title": "Machine Power in BMC",
       "type": "timeseries"
     },
     {
@@ -4749,43 +5105,9 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "Machine Info",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -4800,7 +5122,7 @@
               }
             ]
           },
-          "unit": "rotrpm"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -4808,26 +5130,25 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 90
+        "y": 97
       },
-      "id": 73,
+      "id": 87,
       "options": {
-        "legend": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
-            "lastNotNull",
-            "max",
-            "min",
-            "mean"
+            "lastNotNull"
           ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
+          "fields": "/^Inspur NF5280M6$/",
+          "values": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "textMode": "name",
+        "wideLayout": true
       },
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -4835,15 +5156,83 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "ipmi_fan_speed{job=\"$job\"}",
+          "expr": "bmc_machine_info_info{job=\"$job\"}",
+          "hide": false,
           "instant": false,
-          "legendFormat": "{{job}} FAN{{fan}}_{{pos}}",
+          "legendFormat": "{{manufacturer}} {{model}}",
+          "range": true,
+          "refId": "Total Power"
+        }
+      ],
+      "title": "Machine Info",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 105
+      },
+      "id": 73,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "bmc_fan_read{job=\"$job\"}",
+          "instant": false,
+          "legendFormat": "{{job}} {{name}}({{readingunits}})",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Fan Speed in IPMI",
-      "type": "timeseries"
+      "title": "Fan Speed in BMC",
+      "type": "gauge"
     },
     {
       "collapsed": false,
@@ -4851,7 +5240,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 98
+        "y": 113
       },
       "id": 24,
       "panels": [],
@@ -4923,7 +5312,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 99
+        "y": 114
       },
       "id": 23,
       "options": {
@@ -5029,7 +5418,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 99
+        "y": 114
       },
       "id": 22,
       "options": {
@@ -5135,7 +5524,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 107
+        "y": 122
       },
       "id": 25,
       "options": {
@@ -5281,7 +5670,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 107
+        "y": 122
       },
       "id": 55,
       "links": [],
@@ -5392,7 +5781,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 117
+        "y": 132
       },
       "id": 27,
       "panels": [
@@ -5460,7 +5849,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 105
+            "y": 99
           },
           "id": 26,
           "options": {
@@ -5560,7 +5949,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 105
+            "y": 99
           },
           "id": 31,
           "options": {
@@ -5601,279 +5990,514 @@
       "type": "row"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 118
+        "y": 133
       },
       "id": 30,
-      "panels": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Total Node Rapl Core in Joules per second",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "J/s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "index: 0 / path: \"/sys/class/powercap/intel-rapl:0:0\""
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 100
+          },
+          "id": 29,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max",
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "rate(node_rapl_core_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "index: {{index}} / path: \"{{path}}\"",
+              "range": true,
+              "refId": "node rapl core joules total",
+              "useBackend": false
+            }
+          ],
+          "title": "Total Node Rapl Core (J/s)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Total Node Rapl Package in Joules per second",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "J/s"
+            },
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "index: 0 / Supply: \"/sys/class/powercap/intel-rapl:0\""
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 100
+          },
+          "id": 32,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "max",
+                "min",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "rate(node_rapl_package_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "index: {{index}} / Supply: \"{{path}}\"",
+              "range": true,
+              "refId": "node rapl core joules total",
+              "useBackend": false
+            }
+          ],
+          "title": "Total Node Rapl Package (J/s)",
+          "type": "timeseries"
+        }
+      ],
       "title": "RAPL",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Total Node Rapl Core in Joules per second",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "J/s"
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "index: 0 / path: \"/sys/class/powercap/intel-rapl:0:0\""
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 119
+        "y": 134
       },
-      "id": 29,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "max",
-            "min",
-            "mean"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
+      "id": 82,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(node_rapl_core_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "index: {{index}} / path: \"{{path}}\"",
-          "range": true,
-          "refId": "node rapl core joules total",
-          "useBackend": false
-        }
-      ],
-      "title": "Total Node Rapl Core (J/s)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Total Node Rapl Package in Joules per second",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
               },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "J/s"
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "index: 0 / Supply: \"/sys/class/powercap/intel-rapl:0\""
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
+              "unit": "short"
             },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 119
-      },
-      "id": 32,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull",
-            "max",
-            "min",
-            "mean"
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 0,
+            "y": 101
+          },
+          "id": 83,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "name",
+            "wideLayout": true
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "expr": "node_infiniband_info{job=\"$job\"}",
+              "instant": false,
+              "legendFormat": "{{device}} {{hca_type}}",
+              "range": true,
+              "refId": "A"
+            }
           ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
+          "title": "Infiniband HCA Card Info",
+          "type": "stat"
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(node_rapl_package_joules_total{job=\"$job\", instance=\"$node\"}[$__rate_interval])",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "index: {{index}} / Supply: \"{{path}}\"",
-          "range": true,
-          "refId": "node rapl core joules total",
-          "useBackend": false
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 3,
+            "y": 101
+          },
+          "id": 84,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "name",
+            "wideLayout": true
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "expr": "node_infiniband_info{job=\"$job\"}",
+              "instant": false,
+              "legendFormat": "{{firmware_version}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Infiniband Firmware Version",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "no change"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "down"
+                    },
+                    "2": {
+                      "index": 2,
+                      "text": "init"
+                    },
+                    "3": {
+                      "index": 3,
+                      "text": "armed"
+                    },
+                    "4": {
+                      "index": 4,
+                      "text": "active"
+                    },
+                    "5": {
+                      "index": 5,
+                      "text": "act defer"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 6,
+            "y": 101
+          },
+          "id": 85,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "10.2.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "expr": "node_infiniband_state_id{job=\"$job\"}",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Infiniband HCA Card stat",
+          "type": "stat"
         }
       ],
-      "title": "Total Node Rapl Package (J/s)",
-      "type": "timeseries"
+      "title": "Infiniband",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -5881,7 +6505,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 127
+        "y": 135
       },
       "id": 21,
       "panels": [],
@@ -6028,7 +6652,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 128
+        "y": 136
       },
       "id": 33,
       "links": [],
@@ -6057,7 +6681,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "cpu_freqs{job=\"$job\"}",
+          "expr": "cpu_freqs{job=\"$job\", mode=\"current\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -6073,7 +6697,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(cpu_max_freqs{job=\"$job\"})",
+          "expr": "avg(cpu_freqs{job=\"$job\", mode=\"max\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -6089,7 +6713,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(cpu_min_freqs{job=\"$job\"})",
+          "expr": "avg(cpu_freqs{job=\"$job\", mode=\"min\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -6168,7 +6792,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 128
+        "y": 136
       },
       "id": 69,
       "options": {
@@ -6211,7 +6835,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 138
+        "y": 146
       },
       "id": 2,
       "panels": [
@@ -6232,8 +6856,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6249,7 +6872,7 @@
             "h": 4,
             "w": 4,
             "x": 0,
-            "y": 100
+            "y": 103
           },
           "id": 4,
           "options": {
@@ -6277,7 +6900,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_sysinfo{job=\"$job\"}",
+              "expr": "nvgpu_sysinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -6309,8 +6932,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6326,7 +6948,7 @@
             "h": 4,
             "w": 4,
             "x": 4,
-            "y": 100
+            "y": 103
           },
           "id": 9,
           "options": {
@@ -6354,7 +6976,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_sysinfo{job=\"$job\"}",
+              "expr": "nvgpu_sysinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -6386,8 +7008,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6403,7 +7024,7 @@
             "h": 4,
             "w": 4,
             "x": 8,
-            "y": 100
+            "y": 103
           },
           "id": 6,
           "options": {
@@ -6431,7 +7052,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_sysinfo{job=\"$job\"}",
+              "expr": "nvgpu_sysinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -6459,8 +7080,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6476,7 +7096,7 @@
             "h": 4,
             "w": 3,
             "x": 12,
-            "y": 100
+            "y": 103
           },
           "id": 5,
           "options": {
@@ -6504,7 +7124,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_gpuinfo{job=\"$job\"}",
+              "expr": "nvgpu_gpuinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -6532,8 +7152,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6549,7 +7168,7 @@
             "h": 4,
             "w": 3,
             "x": 15,
-            "y": 100
+            "y": 103
           },
           "id": 14,
           "options": {
@@ -6605,8 +7224,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6622,7 +7240,7 @@
             "h": 4,
             "w": 3,
             "x": 18,
-            "y": 100
+            "y": 103
           },
           "id": 15,
           "options": {
@@ -6683,8 +7301,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6700,7 +7317,7 @@
             "h": 4,
             "w": 3,
             "x": 21,
-            "y": 100
+            "y": 103
           },
           "id": 17,
           "options": {
@@ -6815,8 +7432,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -6828,7 +7444,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 104
+            "y": 107
           },
           "id": 1,
           "options": {
@@ -6886,8 +7502,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6903,7 +7518,7 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 104
+            "y": 107
           },
           "id": 10,
           "options": {
@@ -6932,7 +7547,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_gpuinfo{job=\"$job\"}",
+              "expr": "nvgpu_gpuinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -6960,8 +7575,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -6977,7 +7591,7 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 104
+            "y": 107
           },
           "id": 11,
           "options": {
@@ -7005,7 +7619,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_gpuinfo{job=\"$job\"}",
+              "expr": "nvgpu_gpuinfo_info{job=\"$job\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -7084,7 +7698,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 112
+            "y": 115
           },
           "id": 13,
           "options": {
@@ -7164,7 +7778,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 112
+            "y": 115
           },
           "id": 16,
           "options": {
@@ -7270,7 +7884,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 120
+            "y": 123
           },
           "id": 19,
           "options": {
@@ -7300,7 +7914,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_power_usage{job=\"$job\"}",
+              "expr": "nvgpu_power{job=\"$job\", mode=\"usage\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -7319,7 +7933,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_enforce_limit{job=\"$job\"}",
+              "expr": "nvgpu_power{job=\"$job\", mode=\"enforce_limit\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "hide": false,
@@ -7330,6 +7944,32 @@
               "range": true,
               "refId": "Enforced Limitation",
               "useBackend": false
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "expr": "nvgpu_power{job=\"$job\", mode=\"max\"}",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "GPU Max: {{index}}",
+              "range": true,
+              "refId": "Max"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "expr": "nvgpu_power{job=\"$job\", mode=\"min\"}",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "GPU Min: {{index}}",
+              "range": true,
+              "refId": "Min"
             }
           ],
           "title": "NVIDIA GPU Power",
@@ -7399,7 +8039,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 120
+            "y": 123
           },
           "id": 20,
           "options": {
@@ -7429,7 +8069,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_mem_total{job=\"$job\"}",
+              "expr": "nvgpu_mem{job=\"$job\",mode=\"total\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -7448,7 +8088,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_mem_used{job=\"$job\"}",
+              "expr": "nvgpu_mem{job=\"$job\", mode=\"used\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "hide": false,
@@ -7468,7 +8108,7 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_mem_free{job=\"$job\"}",
+              "expr": "nvgpu_mem{job=\"$job\", mode=\"free\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "hide": false,
@@ -7548,7 +8188,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 128
+            "y": 131
           },
           "id": 12,
           "options": {
@@ -7659,7 +8299,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 128
+            "y": 131
           },
           "id": 18,
           "options": {
@@ -7689,15 +8329,55 @@
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "nvgpu_fan_speed{job=\"$job\"}",
+              "expr": "nvgpu_fan_speed{job=\"$job\", mode=\"current\"}",
               "format": "time_series",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
               "interval": "",
-              "legendFormat": "GPU: {{index}} / Fan: {{fan}}",
+              "legendFormat": "GPU: {{index}} Fan {{fan}} Current",
               "range": true,
-              "refId": "Temp",
+              "refId": "current",
+              "useBackend": false
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "nvgpu_fan_speed{job=\"$job\", mode=\"min\"}",
+              "format": "time_series",
+              "fullMetaSearch": false,
+              "hide": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "GPU: {{index}} Fan {{fan}} Min",
+              "range": true,
+              "refId": "min",
+              "useBackend": false
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "nvgpu_fan_speed{job=\"$job\", mode=\"max\"}",
+              "format": "time_series",
+              "fullMetaSearch": false,
+              "hide": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "GPU: {{index}} Fan {{fan}} Max",
+              "range": true,
+              "refId": "max",
               "useBackend": false
             }
           ],
@@ -7714,7 +8394,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 139
+        "y": 147
       },
       "id": 57,
       "panels": [
@@ -7767,8 +8447,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7784,7 +8463,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 101
+            "y": 104
           },
           "id": 58,
           "links": [],
@@ -7877,8 +8556,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7914,7 +8592,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 101
+            "y": 104
           },
           "id": 59,
           "links": [],
@@ -7978,7 +8656,9 @@
   "schemaVersion": 38,
   "tags": [
     "Linux",
-    "NVIDIA GPU"
+    "NVIDIA GPU",
+    "BMC",
+    "CPU"
   ],
   "templating": {
     "list": [
@@ -8000,6 +8680,30 @@
         "regex": "",
         "skipUrlSync": false,
         "type": "datasource"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(in_which_cluster_info,cluster)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Cluster",
+        "multi": false,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(in_which_cluster_info,cluster)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
       },
       {
         "current": {},
@@ -8080,6 +8784,6 @@
   "timezone": "",
   "title": "Power Dashboard",
   "uid": "f34247bf-b37b-4e33-918a-7cbf80feae5f",
-  "version": 19,
+  "version": 38,
   "weekStart": ""
 }
